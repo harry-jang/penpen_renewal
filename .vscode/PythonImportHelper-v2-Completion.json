@@ -93,7 +93,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DIR_UP = 0\nDIR_DOWN = 1\nDIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 20\nimg_bg = []\nimg_pen = []\nimg_red = []",
+        "peekOfCode": "DIR_UP = 0\nDIR_DOWN = 1\nDIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []",
         "detail": "run",
         "documentation": {}
     },
@@ -102,7 +102,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DIR_DOWN = 1\nDIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 20\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []",
+        "peekOfCode": "DIR_DOWN = 1\nDIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []",
         "detail": "run",
         "documentation": {}
     },
@@ -111,7 +111,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 20\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None",
+        "peekOfCode": "DIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None",
         "detail": "run",
         "documentation": {}
     },
@@ -120,7 +120,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 20\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None",
+        "peekOfCode": "DIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None",
         "detail": "run",
         "documentation": {}
     },
@@ -129,7 +129,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "ANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 20\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트",
+        "peekOfCode": "ANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트",
         "detail": "run",
         "documentation": {}
     },
@@ -138,7 +138,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "BLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 20\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트\nidx = 0",
+        "peekOfCode": "BLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트\nidx = 0",
         "detail": "run",
         "documentation": {}
     },
@@ -147,7 +147,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DOT = 20\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트\nidx = 0\ntmr = 0",
+        "peekOfCode": "DOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트\nidx = 0\ntmr = 0",
         "detail": "run",
         "documentation": {}
     },

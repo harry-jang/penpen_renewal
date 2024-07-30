@@ -9,7 +9,7 @@ DIR_LEFT = 2
 DIR_RIGHT = 3
 ANIMATION = [0, 1, 0, 2]
 BLINK = ["#fff", "#ffc", "#ff8", "#fe4", "#ff8", "#ffc"]
-DOT = 20
+DOT = 5
 
 img_bg = []
 img_pen = []
@@ -173,7 +173,8 @@ def move_penpen(key):  # 펜펜 움직이기
         pen_d = DIR_RIGHT
         if check_wall(pen_x, pen_y, pen_d, DOT) == False:
             pen_x = pen_x + DOT
-    pen_a = pen_d * 3 + ANIMATION[tmr % 4]
+
+    pen_a = pen_d * 3 + ANIMATION[(tmr // 5) % 4]
     mx = int(pen_x / 60)
     my = int(pen_y / 60)
     if map_data[my][mx] == 3:  # 사탕에 닿았는가?
@@ -192,7 +193,6 @@ def main():
     set_character_pos()
 
     clock = pygame.time.Clock()
-
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -201,12 +201,12 @@ def main():
 
         key = pygame.key.get_pressed()
         tmr += 1
-        draw_screen(screen)
 
         move_penpen(key)
+        draw_screen(screen)
 
         pygame.display.update()
-        clock.tick(20)
+        clock.tick(60)
 
 
 if __name__ == '__main__':
