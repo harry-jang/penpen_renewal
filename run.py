@@ -9,7 +9,7 @@ DIR_LEFT = 2
 DIR_RIGHT = 3
 ANIMATION = [0, 1, 0, 2]
 BLINK = ["#fff", "#ffc", "#ff8", "#fe4", "#ff8", "#ffc"]
-DOT = 5
+DOT = 10
 
 img_bg = []
 img_pen = []
@@ -118,10 +118,13 @@ def draw_screen(screen):
 
 
 def check_wall(cx, cy, di, dot):  # 각 방향에 벽 존재 여부 확인
+    print("실제좌표: ({}, {})".format(cy, cx))
     chk = False
+
     if di == DIR_UP:
         mx = int((cx - 30) / 60)
         my = int((cy - 30 - dot) / 60)
+
         if map_data[my][mx] <= 1:  # 좌상
             chk = True
         mx = int((cx + 29) / 60)
@@ -130,6 +133,7 @@ def check_wall(cx, cy, di, dot):  # 각 방향에 벽 존재 여부 확인
     if di == DIR_DOWN:
         mx = int((cx - 30) / 60)
         my = int((cy + 29 + dot) / 60)
+
         if map_data[my][mx] <= 1:  # 좌하
             chk = True
         mx = int((cx + 29) / 60)
@@ -138,41 +142,95 @@ def check_wall(cx, cy, di, dot):  # 각 방향에 벽 존재 여부 확인
     if di == DIR_LEFT:
         mx = int((cx - 30 - dot) / 60)
         my = int((cy - 30) / 60)
+
         if map_data[my][mx] <= 1:  # 좌상
             chk = True
-        mx = int((cy + 29) / 60)
+        my = int((cy + 29) / 60)
         if map_data[my][mx] <= 1:  # 좌하
             chk = True
     if di == DIR_RIGHT:
         mx = int((cx + 29 + dot) / 60)
         my = int((cy - 30) / 60)
+
         if map_data[my][mx] <= 1:  # 우상
             chk = True
-        mx = int((cy + 29) / 60)
+        my = int((cy + 29) / 60)
         if map_data[my][mx] <= 1:  # 우하
             chk = True
     return chk
 
 
+def align_to_grid(pos, grid_size, threshold):
+    mod = pos % grid_size
+    if mod < threshold:
+        pos -= mod
+    elif mod > grid_size - threshold:
+        pos += (grid_size - mod)
+    return pos
+
+
 def move_penpen(key):  # 펜펜 움직이기
     global score, candy, pen_x, pen_y, pen_d, pen_a
-
+    moved = False
+    threshold = DOT
     if key[K_UP] == 1:
         pen_d = DIR_UP
-        if check_wall(pen_x, pen_y, pen_d, DOT) == False:
+        if not check_wall(pen_x, pen_y, pen_d, DOT):
             pen_y = pen_y - DOT
+            moved = True
+        elif not check_wall(pen_x + threshold, pen_y, pen_d, DOT):
+            pen_x += threshold
+            pen_y -= DOT
+            moved = True
+        elif not check_wall(pen_x - threshold, pen_y, pen_d, DOT):
+            pen_x -= threshold
+            pen_y -= DOT
+            moved = True
     elif key[K_DOWN] == 1:
         pen_d = DIR_DOWN
-        if check_wall(pen_x, pen_y, pen_d, DOT) == False:
-            pen_y = pen_y + DOT
+        if not check_wall(pen_x, pen_y, pen_d, DOT):
+            pen_y += DOT
+            moved = True
+        elif not check_wall(pen_x + threshold, pen_y, pen_d, DOT):
+            pen_x += threshold
+            pen_y += DOT
+            moved = True
+        elif not check_wall(pen_x - threshold, pen_y, pen_d, DOT):
+            pen_x -= threshold
+            pen_y += DOT
+            moved = True
     elif key[K_LEFT] == 1:
         pen_d = DIR_LEFT
-        if check_wall(pen_x, pen_y, pen_d, DOT) == False:
-            pen_x = pen_x - DOT
+        if not check_wall(pen_x, pen_y, pen_d, DOT):
+            pen_x -= DOT
+            moved = True
+        elif not check_wall(pen_x, pen_y + threshold, pen_d, DOT):
+            pen_y += threshold
+            pen_x -= DOT
+            moved = True
+        elif not check_wall(pen_x, pen_y - threshold, pen_d, DOT):
+            pen_y -= threshold
+            pen_x -= DOT
+            moved = True
     elif key[K_RIGHT] == 1:
         pen_d = DIR_RIGHT
-        if check_wall(pen_x, pen_y, pen_d, DOT) == False:
-            pen_x = pen_x + DOT
+        if not check_wall(pen_x, pen_y, pen_d, DOT):
+            pen_x += DOT
+            moved = True
+        elif not check_wall(pen_x, pen_y + threshold, pen_d, DOT):
+            pen_y += threshold
+            pen_x += DOT
+            moved = True
+        elif not check_wall(pen_x, pen_y - threshold, pen_d, DOT):
+            pen_y -= threshold
+            pen_x += DOT
+            moved = True
+
+    if moved:
+        if pen_d == DIR_LEFT or pen_d == DIR_RIGHT:
+            pen_y = align_to_grid(pen_y, 60, threshold)
+        if pen_d == DIR_UP or pen_d == DIR_DOWN:
+            pen_x = align_to_grid(pen_x, 60, threshold)
 
     pen_a = pen_d * 3 + ANIMATION[(tmr // 5) % 4]
     mx = int(pen_x / 60)

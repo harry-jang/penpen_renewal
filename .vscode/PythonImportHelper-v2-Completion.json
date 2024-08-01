@@ -57,7 +57,7 @@
         "kind": 2,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "def draw_screen(screen):\n    for y in range(9):\n        for x in range(12):\n            screen.blit(img_bg[map_data[y][x]], [x * 60, y * 60])\n    screen.blit(img_pen[pen_a], [pen_x - 30, pen_y - 30])\ndef check_wall(cx, cy, di, dot):  # 각 방향에 벽 존재 여부 확인\n    chk = False\n    if di == DIR_UP:\n        mx = int((cx - 30) / 60)\n        my = int((cy - 30 - dot) / 60)",
+        "peekOfCode": "def draw_screen(screen):\n    for y in range(9):\n        for x in range(12):\n            screen.blit(img_bg[map_data[y][x]], [x * 60, y * 60])\n    screen.blit(img_pen[pen_a], [pen_x - 30, pen_y - 30])\ndef check_wall(cx, cy, di, dot):  # 각 방향에 벽 존재 여부 확인\n    print(\"실제좌표: ({}, {})\".format(cy, cx))\n    chk = False\n    if di == DIR_UP:\n        mx = int((cx - 30) / 60)",
         "detail": "run",
         "documentation": {}
     },
@@ -66,7 +66,16 @@
         "kind": 2,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "def check_wall(cx, cy, di, dot):  # 각 방향에 벽 존재 여부 확인\n    chk = False\n    if di == DIR_UP:\n        mx = int((cx - 30) / 60)\n        my = int((cy - 30 - dot) / 60)\n        if map_data[my][mx] <= 1:  # 좌상\n            chk = True\n        mx = int((cx + 29) / 60)\n        if map_data[my][mx] <= 1:  # 우상\n            chk = True",
+        "peekOfCode": "def check_wall(cx, cy, di, dot):  # 각 방향에 벽 존재 여부 확인\n    print(\"실제좌표: ({}, {})\".format(cy, cx))\n    chk = False\n    if di == DIR_UP:\n        mx = int((cx - 30) / 60)\n        my = int((cy - 30 - dot) / 60)\n        if map_data[my][mx] <= 1:  # 좌상\n            chk = True\n        mx = int((cx + 29) / 60)\n        if map_data[my][mx] <= 1:  # 우상",
+        "detail": "run",
+        "documentation": {}
+    },
+    {
+        "label": "align_to_grid",
+        "kind": 2,
+        "importPath": "run",
+        "description": "run",
+        "peekOfCode": "def align_to_grid(pos, grid_size, threshold):\n    mod = pos % grid_size\n    if mod < threshold:\n        pos -= mod\n    elif mod > grid_size - threshold:\n        pos += (grid_size - mod)\n    return pos\ndef move_penpen(key):  # 펜펜 움직이기\n    global score, candy, pen_x, pen_y, pen_d, pen_a\n    moved = False",
         "detail": "run",
         "documentation": {}
     },
@@ -75,7 +84,7 @@
         "kind": 2,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "def move_penpen(key):  # 펜펜 움직이기\n    global score, candy, pen_x, pen_y, pen_d, pen_a\n    if key[K_UP] == 1:\n        pen_d = DIR_UP\n        if check_wall(pen_x, pen_y, pen_d, DOT) == False:\n            pen_y = pen_y - DOT\n    elif key[K_DOWN] == 1:\n        pen_d = DIR_DOWN\n        if check_wall(pen_x, pen_y, pen_d, DOT) == False:\n            pen_y = pen_y + DOT",
+        "peekOfCode": "def move_penpen(key):  # 펜펜 움직이기\n    global score, candy, pen_x, pen_y, pen_d, pen_a\n    moved = False\n    threshold = DOT\n    if key[K_UP] == 1:\n        pen_d = DIR_UP\n        if not check_wall(pen_x, pen_y, pen_d, DOT):\n            pen_y = pen_y - DOT\n            moved = True\n        elif not check_wall(pen_x + threshold, pen_y, pen_d, DOT):",
         "detail": "run",
         "documentation": {}
     },
@@ -93,7 +102,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DIR_UP = 0\nDIR_DOWN = 1\nDIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []",
+        "peekOfCode": "DIR_UP = 0\nDIR_DOWN = 1\nDIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 10\nimg_bg = []\nimg_pen = []\nimg_red = []",
         "detail": "run",
         "documentation": {}
     },
@@ -102,7 +111,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DIR_DOWN = 1\nDIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []",
+        "peekOfCode": "DIR_DOWN = 1\nDIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 10\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []",
         "detail": "run",
         "documentation": {}
     },
@@ -111,7 +120,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None",
+        "peekOfCode": "DIR_LEFT = 2\nDIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 10\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None",
         "detail": "run",
         "documentation": {}
     },
@@ -120,7 +129,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None",
+        "peekOfCode": "DIR_RIGHT = 3\nANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 10\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None",
         "detail": "run",
         "documentation": {}
     },
@@ -129,7 +138,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "ANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트",
+        "peekOfCode": "ANIMATION = [0, 1, 0, 2]\nBLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 10\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트",
         "detail": "run",
         "documentation": {}
     },
@@ -138,7 +147,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "BLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트\nidx = 0",
+        "peekOfCode": "BLINK = [\"#fff\", \"#ffc\", \"#ff8\", \"#fe4\", \"#ff8\", \"#ffc\"]\nDOT = 10\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트\nidx = 0",
         "detail": "run",
         "documentation": {}
     },
@@ -147,7 +156,7 @@
         "kind": 5,
         "importPath": "run",
         "description": "run",
-        "peekOfCode": "DOT = 5\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트\nidx = 0\ntmr = 0",
+        "peekOfCode": "DOT = 10\nimg_bg = []\nimg_pen = []\nimg_red = []\nimg_kuma = []\nimg_title = None\nimg_ending = None\nmap_data = []  # 미로용 리스트\nidx = 0\ntmr = 0",
         "detail": "run",
         "documentation": {}
     },
